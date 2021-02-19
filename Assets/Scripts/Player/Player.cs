@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (damage == 0) return;
+
         _health -= damage;
 
         TookHit?.Invoke();

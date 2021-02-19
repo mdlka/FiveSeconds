@@ -25,7 +25,7 @@ public class Timer : MonoBehaviour
         {
             yield return waitForSeconds;
 
-            _remainingTime -= 1;
+            _remainingTime--;
             TimeChanged?.Invoke(_remainingTime);
         }
 

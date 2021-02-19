@@ -2,11 +2,11 @@
 using UnityEngine;
 using System.Linq;
 
-public class SaveSystem : MonoBehaviour
+public class Save : MonoBehaviour
 {
     [SerializeField] private LevelsData _levelsData;
 
-    private Save _save = new Save();
+    private SaveData _save = new SaveData();
     private string _path;
 
     private void Start()
@@ -15,7 +15,7 @@ public class SaveSystem : MonoBehaviour
 
         if (File.Exists(_path))
         {
-            _save = JsonUtility.FromJson<Save>(File.ReadAllText(_path));
+            _save = JsonUtility.FromJson<SaveData>(File.ReadAllText(_path));
 
             var openLevels = _save.Levels.TakeWhile(level => level.IsOpen == true);
 
@@ -26,7 +26,7 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    private void Save()
+    private void SaveGame()
     {
         Level[] levels = new Level[_levelsData.Lenght];
 
@@ -41,12 +41,12 @@ public class SaveSystem : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        Save();
+        SaveGame();
     }
 }
 
 [System.Serializable]
-public class Save
+public class SaveData
 {
     public Level[] Levels;
 }

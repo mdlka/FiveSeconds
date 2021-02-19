@@ -46,7 +46,7 @@ public class PlayerFallDamage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(_damage != 0 && collision.gameObject.TryGetComponent(out Ground ground))
+        if(collision.gameObject.TryGetComponent(out Ground ground))
         {
             _player.TakeDamage(_damage);
         }
